@@ -1,0 +1,7 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+lua-dev
+glib-dev
+gdk-pixbuf-dev
+startup-notification-dev
+lualgi-lib
