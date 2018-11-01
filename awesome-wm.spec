@@ -6,7 +6,7 @@
 #
 Name     : awesome-wm
 Version  : 4.2
-Release  : 1
+Release  : 4
 URL      : https://github.com/awesomeWM/awesome-releases/raw/master/awesome-4.2.tar.xz
 Source0  : https://github.com/awesomeWM/awesome-releases/raw/master/awesome-4.2.tar.xz
 Source99 : https://github.com/awesomeWM/awesome-releases/raw/master/awesome-4.2.tar.xz.asc
@@ -18,7 +18,48 @@ Requires: awesome-wm-config = %{version}-%{release}
 Requires: awesome-wm-data = %{version}-%{release}
 Requires: awesome-wm-license = %{version}-%{release}
 Requires: awesome-wm-man = %{version}-%{release}
+Requires: cairo-lib
+Requires: dbus-lib
+Requires: expat-lib
+Requires: fontconfig-lib
+Requires: freetype-lib
+Requires: gdk-pixbuf-lib
+Requires: glib-lib
+Requires: graphite-lib
+Requires: harfbuzz-lib
+Requires: libX11-lib
+Requires: libXau-lib
+Requires: libXdamage-lib
+Requires: libXdmcp-lib
+Requires: libXext-lib
+Requires: libXfixes-lib
+Requires: libXxf86vm-lib
+Requires: libdrm-lib
+Requires: libffi-lib
+Requires: libgcrypt-lib
+Requires: libgpg-error-lib
+Requires: libpng-lib
+Requires: libxcb-lib
+Requires: libxdg-basedir
+Requires: libxkbcommon-lib
+Requires: libxshmfence-lib
+Requires: lualgi
+Requires: mesa-lib
+Requires: pcre-lib
+Requires: pixman-lib
+Requires: startup-notification-lib
+Requires: systemd-lib
+Requires: util-linux-lib
+Requires: wayland-lib
+Requires: xcb-util-cursor-lib
+Requires: xcb-util-image-lib
+Requires: xcb-util-keysyms-lib
+Requires: xcb-util-lib
+Requires: xcb-util-renderutil-lib
+Requires: xcb-util-wm-lib
 Requires: xcb-util-xrm
+Requires: xz-lib
+Requires: zlib-lib
 BuildRequires : ImageMagick
 BuildRequires : asciidoc
 BuildRequires : buildreq-cmake
@@ -107,7 +148,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541014829
+export SOURCE_DATE_EPOCH=1541178272
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -115,7 +156,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1541014829
+export SOURCE_DATE_EPOCH=1541178272
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/awesome-wm
 cp LICENSE %{buildroot}/usr/share/package-licenses/awesome-wm/LICENSE
