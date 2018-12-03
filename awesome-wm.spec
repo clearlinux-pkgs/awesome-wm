@@ -6,7 +6,7 @@
 #
 Name     : awesome-wm
 Version  : 4.2
-Release  : 4
+Release  : 5
 URL      : https://github.com/awesomeWM/awesome-releases/raw/master/awesome-4.2.tar.xz
 Source0  : https://github.com/awesomeWM/awesome-releases/raw/master/awesome-4.2.tar.xz
 Source99 : https://github.com/awesomeWM/awesome-releases/raw/master/awesome-4.2.tar.xz.asc
@@ -14,7 +14,6 @@ Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: awesome-wm-bin = %{version}-%{release}
-Requires: awesome-wm-config = %{version}-%{release}
 Requires: awesome-wm-data = %{version}-%{release}
 Requires: awesome-wm-license = %{version}-%{release}
 Requires: awesome-wm-man = %{version}-%{release}
@@ -90,20 +89,11 @@ Licensed under CC-BY-SA-3.0
 Summary: bin components for the awesome-wm package.
 Group: Binaries
 Requires: awesome-wm-data = %{version}-%{release}
-Requires: awesome-wm-config = %{version}-%{release}
 Requires: awesome-wm-license = %{version}-%{release}
 Requires: awesome-wm-man = %{version}-%{release}
 
 %description bin
 bin components for the awesome-wm package.
-
-
-%package config
-Summary: config components for the awesome-wm package.
-Group: Default
-
-%description config
-config components for the awesome-wm package.
 
 
 %package data
@@ -148,15 +138,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541178272
+export SOURCE_DATE_EPOCH=1543874878
 mkdir -p clr-build
 pushd clr-build
-%cmake ..
+%cmake .. -DSYSCONFDIR=/usr/share
 make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1541178272
+export SOURCE_DATE_EPOCH=1543874878
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/awesome-wm
 cp LICENSE %{buildroot}/usr/share/package-licenses/awesome-wm/LICENSE
@@ -171,10 +161,6 @@ popd
 %defattr(-,root,root,-)
 /usr/bin/awesome
 /usr/bin/awesome-client
-
-%files config
-%defattr(-,root,root,-)
-%config /usr/etc/xdg/awesome/rc.lua
 
 %files data
 %defattr(-,root,root,-)
@@ -433,6 +419,7 @@ popd
 /usr/share/awesome/themes/zenburn/titlebar/sticky_normal_inactive.png
 /usr/share/awesome/themes/zenburn/zenburn-background.png
 /usr/share/gnome-session/sessions/awesome.desktop
+/usr/share/xdg/awesome/rc.lua
 /usr/share/xsessions/awesome.desktop
 
 %files doc
