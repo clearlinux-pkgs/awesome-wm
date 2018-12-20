@@ -6,10 +6,10 @@
 #
 Name     : awesome-wm
 Version  : 4.2
-Release  : 5
-URL      : https://github.com/awesomeWM/awesome-releases/raw/master/awesome-4.2.tar.xz
-Source0  : https://github.com/awesomeWM/awesome-releases/raw/master/awesome-4.2.tar.xz
-Source99 : https://github.com/awesomeWM/awesome-releases/raw/master/awesome-4.2.tar.xz.asc
+Release  : 6
+URL      : https://github.com/awesomeWM/awesome/releases/download/v4.2/awesome-4.2.tar.xz
+Source0  : https://github.com/awesomeWM/awesome/releases/download/v4.2/awesome-4.2.tar.xz
+Source99 : https://github.com/awesomeWM/awesome/releases/download/v4.2/awesome-4.2.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -138,7 +138,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1543874878
+export SOURCE_DATE_EPOCH=1545337015
 mkdir -p clr-build
 pushd clr-build
 %cmake .. -DSYSCONFDIR=/usr/share
@@ -146,7 +146,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1543874878
+export SOURCE_DATE_EPOCH=1545337015
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/awesome-wm
 cp LICENSE %{buildroot}/usr/share/package-licenses/awesome-wm/LICENSE
