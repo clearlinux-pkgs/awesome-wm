@@ -1,7 +1,8 @@
-4.2
+4.3
 ImageMagick
 asciidoc
 pkgconfig(cairo)
+pkgconfig(cairo-xcb)
 pkgconfig(libxdg-basedir)
 pkgconfig(xcb)
 pkgconfig(xcb-cursor)
@@ -10,4 +11,5 @@ pkgconfig(xcb-keysyms)
 pkgconfig(xcb-util)
 pkgconfig(xcb-xrm)
 pkgconfig(xkbcommon)
+pkgconfig(xkbcommon-x11)
 xmlto

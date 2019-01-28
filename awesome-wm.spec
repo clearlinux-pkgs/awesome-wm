@@ -5,18 +5,17 @@
 # Source0 file verified with key 0x22E428EBCB8FCB06 (psychon@znc.in)
 #
 Name     : awesome-wm
-Version  : 4.2
-Release  : 6
-URL      : https://github.com/awesomeWM/awesome/releases/download/v4.2/awesome-4.2.tar.xz
-Source0  : https://github.com/awesomeWM/awesome/releases/download/v4.2/awesome-4.2.tar.xz
-Source99 : https://github.com/awesomeWM/awesome/releases/download/v4.2/awesome-4.2.tar.xz.asc
+Version  : 4.3
+Release  : 7
+URL      : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz
+Source0  : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz
+Source99 : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: awesome-wm-bin = %{version}-%{release}
 Requires: awesome-wm-data = %{version}-%{release}
 Requires: awesome-wm-license = %{version}-%{release}
-Requires: awesome-wm-man = %{version}-%{release}
 Requires: cairo-lib
 Requires: dbus-lib
 Requires: expat-lib
@@ -60,24 +59,21 @@ Requires: xcb-util-xrm
 Requires: xz-lib
 Requires: zlib-lib
 BuildRequires : ImageMagick
-BuildRequires : asciidoc
 BuildRequires : buildreq-cmake
 BuildRequires : gdk-pixbuf-dev
 BuildRequires : glib-dev
 BuildRequires : lua-dev
 BuildRequires : lualgi-lib
 BuildRequires : pkgconfig(cairo)
+BuildRequires : pkgconfig(cairo-xcb)
 BuildRequires : pkgconfig(dbus-1)
 BuildRequires : pkgconfig(libxdg-basedir)
 BuildRequires : pkgconfig(xcb)
 BuildRequires : pkgconfig(xcb-cursor)
-BuildRequires : pkgconfig(xcb-icccm)
-BuildRequires : pkgconfig(xcb-keysyms)
-BuildRequires : pkgconfig(xcb-util)
 BuildRequires : pkgconfig(xcb-xrm)
 BuildRequires : pkgconfig(xkbcommon)
+BuildRequires : pkgconfig(xkbcommon-x11)
 BuildRequires : startup-notification-dev
-BuildRequires : xmlto
 Patch1: install-awesome.desktop-into-gnome-sessions.patch
 
 %description
@@ -90,7 +86,6 @@ Summary: bin components for the awesome-wm package.
 Group: Binaries
 Requires: awesome-wm-data = %{version}-%{release}
 Requires: awesome-wm-license = %{version}-%{release}
-Requires: awesome-wm-man = %{version}-%{release}
 
 %description bin
 bin components for the awesome-wm package.
@@ -107,7 +102,6 @@ data components for the awesome-wm package.
 %package doc
 Summary: doc components for the awesome-wm package.
 Group: Documentation
-Requires: awesome-wm-man = %{version}-%{release}
 
 %description doc
 doc components for the awesome-wm package.
@@ -121,16 +115,8 @@ Group: Default
 license components for the awesome-wm package.
 
 
-%package man
-Summary: man components for the awesome-wm package.
-Group: Default
-
-%description man
-man components for the awesome-wm package.
-
-
 %prep
-%setup -q -n awesome-4.2
+%setup -q -n awesome-4.3
 %patch1 -p1
 
 %build
@@ -138,15 +124,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545337015
+export SOURCE_DATE_EPOCH=1548690186
 mkdir -p clr-build
 pushd clr-build
 %cmake .. -DSYSCONFDIR=/usr/share
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1545337015
+export SOURCE_DATE_EPOCH=1548690186
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/awesome-wm
 cp LICENSE %{buildroot}/usr/share/package-licenses/awesome-wm/LICENSE
@@ -181,6 +167,7 @@ popd
 /usr/share/awesome/lib/awful/hotkeys_popup/keys/firefox.lua
 /usr/share/awesome/lib/awful/hotkeys_popup/keys/init.lua
 /usr/share/awesome/lib/awful/hotkeys_popup/keys/qutebrowser.lua
+/usr/share/awesome/lib/awful/hotkeys_popup/keys/termite.lua
 /usr/share/awesome/lib/awful/hotkeys_popup/keys/tmux.lua
 /usr/share/awesome/lib/awful/hotkeys_popup/keys/vim.lua
 /usr/share/awesome/lib/awful/hotkeys_popup/widget.lua
@@ -202,6 +189,7 @@ popd
 /usr/share/awesome/lib/awful/mouse/resize.lua
 /usr/share/awesome/lib/awful/mouse/snap.lua
 /usr/share/awesome/lib/awful/placement.lua
+/usr/share/awesome/lib/awful/popup.lua
 /usr/share/awesome/lib/awful/prompt.lua
 /usr/share/awesome/lib/awful/remote.lua
 /usr/share/awesome/lib/awful/rules.lua
@@ -223,6 +211,7 @@ popd
 /usr/share/awesome/lib/awful/widget/keyboardlayout.lua
 /usr/share/awesome/lib/awful/widget/launcher.lua
 /usr/share/awesome/lib/awful/widget/layoutbox.lua
+/usr/share/awesome/lib/awful/widget/layoutlist.lua
 /usr/share/awesome/lib/awful/widget/only_on_screen.lua
 /usr/share/awesome/lib/awful/widget/progressbar.lua
 /usr/share/awesome/lib/awful/widget/prompt.lua
@@ -231,6 +220,7 @@ popd
 /usr/share/awesome/lib/awful/widget/textclock.lua
 /usr/share/awesome/lib/awful/widget/watch.lua
 /usr/share/awesome/lib/beautiful.lua
+/usr/share/awesome/lib/beautiful/gtk.lua
 /usr/share/awesome/lib/beautiful/init.lua
 /usr/share/awesome/lib/beautiful/theme_assets.lua
 /usr/share/awesome/lib/beautiful/xresources.lua
@@ -246,6 +236,8 @@ popd
 /usr/share/awesome/lib/gears/object/properties.lua
 /usr/share/awesome/lib/gears/protected_call.lua
 /usr/share/awesome/lib/gears/shape.lua
+/usr/share/awesome/lib/gears/sort/init.lua
+/usr/share/awesome/lib/gears/sort/topological.lua
 /usr/share/awesome/lib/gears/string.lua
 /usr/share/awesome/lib/gears/surface.lua
 /usr/share/awesome/lib/gears/table.lua
@@ -295,6 +287,7 @@ popd
 /usr/share/awesome/lib/wibox/widget/init.lua
 /usr/share/awesome/lib/wibox/widget/piechart.lua
 /usr/share/awesome/lib/wibox/widget/progressbar.lua
+/usr/share/awesome/lib/wibox/widget/separator.lua
 /usr/share/awesome/lib/wibox/widget/slider.lua
 /usr/share/awesome/lib/wibox/widget/systray.lua
 /usr/share/awesome/lib/wibox/widget/textbox.lua
@@ -358,6 +351,7 @@ popd
 /usr/share/awesome/themes/default/titlebar/sticky_focus_inactive.png
 /usr/share/awesome/themes/default/titlebar/sticky_normal_active.png
 /usr/share/awesome/themes/default/titlebar/sticky_normal_inactive.png
+/usr/share/awesome/themes/gtk/theme.lua
 /usr/share/awesome/themes/sky/awesome-icon.png
 /usr/share/awesome/themes/sky/layouts/cornerne.png
 /usr/share/awesome/themes/sky/layouts/cornernw.png
@@ -432,24 +426,3 @@ popd
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/awesome-wm/LICENSE
-
-%files man
-%defattr(0644,root,root,0755)
-/usr/share/man/de/man1/awesome-client.1.gz
-/usr/share/man/de/man1/awesome.1.gz
-/usr/share/man/de/man5/awesomerc.5.gz
-/usr/share/man/es/man1/awesome-client.1.gz
-/usr/share/man/es/man1/awesome.1.gz
-/usr/share/man/es/man5/awesomerc.5.gz
-/usr/share/man/fr/man1/awesome-client.1.gz
-/usr/share/man/fr/man1/awesome.1.gz
-/usr/share/man/fr/man5/awesomerc.5.gz
-/usr/share/man/it/man1/awesome-client.1.gz
-/usr/share/man/it/man1/awesome.1.gz
-/usr/share/man/it/man5/awesomerc.5.gz
-/usr/share/man/man1/awesome-client.1.gz
-/usr/share/man/man1/awesome.1.gz
-/usr/share/man/man5/awesomerc.5.gz
-/usr/share/man/ru/man1/awesome-client.1.gz
-/usr/share/man/ru/man1/awesome.1.gz
-/usr/share/man/ru/man5/awesomerc.5.gz
