@@ -1,5 +1,16 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Humberto=20Nanni=20Hern=C3=A1ndez?=
+ <humberto.nanni@.intel.com>
+Date: Wed, 31 Oct 2018 13:40:44 -0600
+Subject: [PATCH] Install awesome.desktop into gnome sessions
+
+---
+ CMakeLists.txt      | 1 +
+ awesomeConfig.cmake | 2 ++
+ 2 files changed, 3 insertions(+)
+
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 1916d5c..4b0c3f3 100644
+index 9d3d3b4..4826159 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -389,6 +389,7 @@ install(DIRECTORY ${BUILD_DIR}/themes DESTINATION ${AWESOME_DATA_PATH}
@@ -11,10 +22,10 @@ index 1916d5c..4b0c3f3 100644
      install(DIRECTORY ${BUILD_DIR}/doc DESTINATION ${AWESOME_DOC_PATH})
  endif()
 diff --git a/awesomeConfig.cmake b/awesomeConfig.cmake
-index 3eba005..6de989f 100644
+index 79eae7e..36a7fe8 100644
 --- a/awesomeConfig.cmake
 +++ b/awesomeConfig.cmake
-@@ -270,6 +270,8 @@ if(DEFINED AWESOME_XSESSION_PATH)
+@@ -256,6 +256,8 @@ if(DEFINED AWESOME_XSESSION_PATH)
  else()
      set(AWESOME_XSESSION_PATH ${CMAKE_INSTALL_PREFIX}/share/xsessions CACHE PATH "awesome xsessions directory")
  endif()

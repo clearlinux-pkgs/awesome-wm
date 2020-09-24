@@ -1,1 +1,2 @@
-install-awesome.desktop-into-gnome-sessions.patch
+0001-Install-awesome.desktop-into-gnome-sessions.patch
+0002-Move-variable-declarations-from-header-to-C-file-to-.patch

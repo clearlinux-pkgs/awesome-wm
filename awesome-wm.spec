@@ -6,10 +6,10 @@
 #
 Name     : awesome-wm
 Version  : 4.3
-Release  : 10
+Release  : 11
 URL      : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz
 Source0  : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz
-Source99 : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz.asc
+Source1  : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -59,10 +59,13 @@ Requires: xcb-util-xrm
 Requires: xz-lib
 Requires: zlib-lib
 BuildRequires : ImageMagick
+BuildRequires : asciidoc
 BuildRequires : buildreq-cmake
 BuildRequires : gdk-pixbuf-dev
 BuildRequires : glib-dev
+BuildRequires : libxdg-basedir
 BuildRequires : lua-dev
+BuildRequires : lualgi
 BuildRequires : lualgi-lib
 BuildRequires : pkgconfig(cairo)
 BuildRequires : pkgconfig(cairo-xcb)
@@ -70,11 +73,17 @@ BuildRequires : pkgconfig(dbus-1)
 BuildRequires : pkgconfig(libxdg-basedir)
 BuildRequires : pkgconfig(xcb)
 BuildRequires : pkgconfig(xcb-cursor)
+BuildRequires : pkgconfig(xcb-icccm)
+BuildRequires : pkgconfig(xcb-keysyms)
+BuildRequires : pkgconfig(xcb-util)
 BuildRequires : pkgconfig(xcb-xrm)
 BuildRequires : pkgconfig(xkbcommon)
 BuildRequires : pkgconfig(xkbcommon-x11)
 BuildRequires : startup-notification-dev
-Patch1: install-awesome.desktop-into-gnome-sessions.patch
+BuildRequires : xcb-util-xrm
+BuildRequires : xmlto
+Patch1: 0001-Install-awesome.desktop-into-gnome-sessions.patch
+Patch2: 0002-Move-variable-declarations-from-header-to-C-file-to-.patch
 
 %description
 Background images:
@@ -117,25 +126,32 @@ license components for the awesome-wm package.
 
 %prep
 %setup -q -n awesome-4.3
+cd %{_builddir}/awesome-4.3
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1548690186
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1600983469
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake .. -DSYSCONFDIR=/usr/share
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1548690186
+export SOURCE_DATE_EPOCH=1600983469
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/awesome-wm
-cp LICENSE %{buildroot}/usr/share/package-licenses/awesome-wm/LICENSE
+cp %{_builddir}/awesome-4.3/LICENSE %{buildroot}/usr/share/package-licenses/awesome-wm/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
 pushd clr-build
 %make_install
 popd
@@ -425,4 +441,4 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/awesome-wm/LICENSE
+/usr/share/package-licenses/awesome-wm/06877624ea5c77efe3b7e39b0f909eda6e25a4ec

@@ -2,10 +2,10 @@ libX11.so.6
 libc.so.6
 libcairo.so.2
 libdbus-1.so.3
-libdl.so.2
 libgdk_pixbuf-2.0.so.0
 libglib-2.0.so.0
 libgobject-2.0.so.0
+liblua.so.5.3
 libm.so.6
 libstartup-notification-1.so.0
 libxcb-cursor.so.0
