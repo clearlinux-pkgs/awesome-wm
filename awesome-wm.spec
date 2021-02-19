@@ -6,7 +6,7 @@
 #
 Name     : awesome-wm
 Version  : 4.3
-Release  : 11
+Release  : 12
 URL      : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz
 Source0  : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz
 Source1  : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz.asc
@@ -135,7 +135,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1600983469
+export SOURCE_DATE_EPOCH=1613774559
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -148,7 +148,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1600983469
+export SOURCE_DATE_EPOCH=1613774559
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/awesome-wm
 cp %{_builddir}/awesome-4.3/LICENSE %{buildroot}/usr/share/package-licenses/awesome-wm/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
