@@ -6,7 +6,7 @@
 #
 Name     : awesome-wm
 Version  : 4.3
-Release  : 12
+Release  : 13
 URL      : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz
 Source0  : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz
 Source1  : https://github.com/awesomeWM/awesome/releases/download/v4.3/awesome-4.3.tar.xz.asc
